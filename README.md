@@ -122,9 +122,8 @@ EchoGuard/
 ├── .gitignore
 │
 ├── data/
-│   └── id_00
-|         |── abnormal
-|         └── normal
+│   |── .gitkeep
+|   └── normal
 │
 ├── notebooks/
 │   ├── 01_dataset_exploration.ipynb
