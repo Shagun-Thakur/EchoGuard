@@ -1,0 +1,22 @@
+# Dataset
+data/
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Python
+__pycache__/
+*.pyc
+
+# Models
+models/
+
+# Results
+results/
+
+# VS Code
+.vscode/
+
+# Environment
+.venv/
+env/
