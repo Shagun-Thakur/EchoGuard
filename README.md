@@ -123,7 +123,7 @@ EchoGuard/
 │
 ├── data/
 │   |── .gitkeep
-|   └── normal
+|   └── README.md
 │
 ├── notebooks/
 │   ├── 01_dataset_exploration.ipynb
