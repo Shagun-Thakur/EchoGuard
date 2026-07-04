@@ -127,13 +127,14 @@ EchoGuard/
 │
 ├── notebooks/
 │   ├── 01_dataset_exploration.ipynb
-│   ├── 02_waveform_analysis.ipynb
-│   ├── 03_rms_analysis.ipynb
-│   ├── 04_spectrogram_analysis.ipynb
-│   ├── 05_spectral_centroid_analysis.ipynb
-│   ├── 06_mfcc_analysis.ipynb
-│   ├── 07_feature_summary.ipynb
-│   └── 08_model.ipynb
+|   ├── 02_channel_selection.ipynb
+│   ├── 03_waveform_analysis.ipynb
+│   ├── 04_rms_analysis.ipynb
+│   ├── 05_spectrogram_analysis.ipynb
+│   ├── 06_spectral_centroid_analysis.ipynb
+│   ├── 07_mfcc_analysis.ipynb
+│   ├── 08_feature_summary.ipynb
+│   └── 09_model.ipynb
 │
 ├── src/
 │   ├── __init__.py
