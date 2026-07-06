@@ -36,7 +36,7 @@ def plot_spectrogram(signal, sr, ax = None, title = None):
         d,
         sr = sr,
         x_axis = "time",
-        y_log = "log",
+        y_log = "log"
         cmap = "magma",
         ax = ax
     )
