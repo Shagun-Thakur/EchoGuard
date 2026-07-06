@@ -25,22 +25,37 @@ def plot_waveforms(files, channel = 0, title = None):
     plt.show()
 
 # Spectrogram
-def plot_spectrogram(signal, sr):
+def plot_spectrogram(signal, sr, ax = None, title = None):
     d = librosa.amplitude_to_db(
         np.abs(librosa.stft(signal)),
         ref = np.max
     )
-    plt.figure(figsize = (10, 4))
-    librosa.display.specshow(
+    if ax is None:
+        fig, ax = plt.figure(figsize = (10, 4))
+    img = librosa.display.specshow(
         d,
         sr = sr,
         x_axis = "time",
         y_log = "log"
+        cmap = "magma",
+        ax = ax
     )
-    plt.colorbar()
-    plt.tight_layout()
-    plt.show()
+    if title:
+        ax.set_title(title)
+    return img
 
+# Spectrogram of a group
+def plot_group_spectrograms(dataframe, folder, channel=0, title=""):
+    fig, axes = plt.subplots(len(dataframe), 1, figsize=(12, 3*len(dataframe)), constrained_layout=True)
+    if len(dataframe) == 1:
+        axes = [axes]
+    fig.suptitle(title, fontsize=16)
+    for ax, (_, row) in zip(axes, dataframe.iterrows()):
+        file_path = Path(folder) / row["file_name"]
+        signal, sr = load_channel(file_path, channel)
+        img = plot_spectrogram(signal, sr, ax=ax, title=row["file_name"])
+    fig.colorbar(img, ax=axes, format="%+2.0f dB")
+    plt.show()
 # Histogram
 def plot_histogram(data,
                    bins = 30,
