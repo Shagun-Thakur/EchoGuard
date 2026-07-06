@@ -2,7 +2,7 @@ import matplotlib.pyplot as plt
 import librosa
 import librosa.display
 import numpy as np
-from .io import laod_channel
+from src.io import load_channel
 
 # Waveform
 def plot_waveforms(files, channel = 0, title = None):

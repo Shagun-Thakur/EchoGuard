@@ -1,0 +1,6 @@
+Metadata-Version: 2.4
+Name: echoguard
+Version: 0.1.0
+Summary: Research project for machine audio anomaly detection
+License-File: LICENSE
+Dynamic: license-file

@@ -5,6 +5,9 @@ import numpy as np
 def rms(signal):
     return librosa.feature.rms(y = signal)[0]
 
+def mean_rms(signal):
+    return np.mean(rms(signal))
+
 # 2. Spectral Centroid
 def spectral_centroid(signal, sr):
     return librosa.feature.spectral_centroid(
