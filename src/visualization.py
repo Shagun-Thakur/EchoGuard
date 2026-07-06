@@ -3,6 +3,7 @@ import librosa
 import librosa.display
 import numpy as np
 from src.io import load_channel
+from pathlib import Path
 
 # Waveform
 def plot_waveforms(files, channel = 0, title = None):
