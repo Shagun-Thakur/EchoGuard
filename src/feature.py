@@ -57,7 +57,7 @@ def spectral_centroid_statistics(signal, sr):
     "centroid_mean": np.mean(centroid),
     "centroid_std": np.std(centroid),
     "centroid_min": np.min(centroid),
-    "centroid_max": np.max(cntroid),
+    "centroid_max": np.max(centroid),
     "centroid_delta":np.max(centroid) - np.min(centroid),
     "centroid_q25": q25,
     "centroid_q75": q75,
