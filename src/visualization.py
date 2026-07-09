@@ -37,7 +37,7 @@ def plot_spectrogram(signal, sr, ax = None, title = None):
         d,
         sr = sr,
         x_axis = "time",
-        y_log = "log",
+        y_axis = "log",
         cmap = "magma",
         ax = ax
     )
@@ -46,7 +46,7 @@ def plot_spectrogram(signal, sr, ax = None, title = None):
     return img
 
 # Spectrogram of a group
-def plot_group_spectrograms(dataframe, folder, channel=0, title=""):
+def plot_group_spectrograms(dataframe, folder, title = "", channel=0):
     fig, axes = plt.subplots(len(dataframe), 1, figsize=(12, 3*len(dataframe)), constrained_layout=True)
     if len(dataframe) == 1:
         axes = [axes]
