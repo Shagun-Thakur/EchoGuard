@@ -47,3 +47,19 @@ def statistics(feature):
         "iqr": np.percentile(feature, 75) - np.percentile(feature, 25),
         "delta": np.max(feature) - np.min(feature)
     }
+
+# 7. Spectral Centroid Statistics
+def spectral_centroid_statistics(signal, sr):
+    centroid = librosa.feature.spectral_centroid(y = signal, sr = sr)[0]
+    q25 = np.percentile(centroid, 25)
+    q75 = np.percentile(centroid, 75)
+    return{
+    "centroid_mean": np.mean(centroid),
+    "centroid_std": np.std(centroid),
+    "centroid_min": np.min(centroid),
+    "centroid_max": np.max(cntroid),
+    "centroid_delta":np.max(centroid) - np.min(centroid),
+    "centroid_q25": q25,
+    "centroid_q75": q75,
+    "centroid_iqr": q75 - q25
+    }
