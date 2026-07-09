@@ -19,4 +19,4 @@ def get_audio_path(file_name, label):
     """
     if label == "normal":
         return normal_path/file_name
-    return abnormal_path/file
+    return abnormal_path/file_name
