@@ -76,3 +76,15 @@ def plot_boxplot(data, labels, ylabel):
     plt.ylabel(ylabel)
     plt.show()
 
+def plot_spectral_centroid(signal, sr, ax = None, title = None):
+    if ax is None:
+        fig, ax = plt.subplots(figsize = (10, 4))
+    centroid = librosa.feature.spectral_centroid(y = signal, sr = sr)[0]
+    frames = range(len(centroid))
+    times = librosa.frames_to_time(frames, sr = sr)
+    ax.plot(times, centroid, linewidth = 1.5)
+    ax.set_xlabel("Time (s)")
+    ax.set_ylabel("Spectral Centroid (Hz)")
+    if title:
+        ax.set_title(title)
+    ax.grid(alpha = 0.3)

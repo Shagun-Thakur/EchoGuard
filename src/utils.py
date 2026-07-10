@@ -17,6 +17,6 @@ def get_audio_path(file_name, label):
     """
     Returns the full path of an audio file based on its label.
     """
-    if label == "normal":
-        return normal_path/"file_name"
-    return abnormal_path/"file_name"
+    if label == "Normal":
+        return normal_path/f"{file_name}"
+    return abnormal_path/f"{file_name}"
