@@ -63,3 +63,12 @@ def spectral_centroid_statistics(signal, sr):
     "centroid_q75": q75,
     "centroid_iqr": q75 - q25
     }
+
+# MFCC Feature Extraction Function
+def mfcc_statistics(signal, sr, n_mfcc = 20):
+    mfcc = librosa.feature.mfcc(y = signal, sr = sr, n_mfcc = n_mfcc)
+    features = {}
+    for i in range(n_mfcc):
+        features[f"mfcc_{i+1}_mean"] = np.mean(mfcc[i])
+        features[f"mfcc_{i+1}_std"] = np.std(mfcc[i])
+    return features

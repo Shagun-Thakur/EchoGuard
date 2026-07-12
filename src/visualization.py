@@ -88,3 +88,19 @@ def plot_spectral_centroid(signal, sr, ax = None, title = None):
     if title:
         ax.set_title(title)
     ax.grid(alpha = 0.3)
+
+# MFCC Heatmaps
+def plot_mfcc(signal, sr, n_mfcc = 20, cmap = "magma", ax = None, title = None):
+    mfcc = librosa.feature.mfcc(y = signal, sr = sr, n_mfcc = n_mfcc)
+    if ax is None:
+        fig, ax = plt.subplots(figsize = (10, 4))
+    img = librosa.display.specshow(mfcc, x_axis = "time", cmap = cmap, ax = ax)
+    ax.set_ylabel("MFCC")
+    if title:
+        ax.set_title(title)
+    return img
+
+# Mean MFCC Profile
+def mean_mfcc_profile(signal, sr, n_mfcc = 20):
+    mfcc = librosa.feature.mfcc(y = signal, sr = sr, n_mfcc = n_mfcc)
+    return np.mean(mfcc, axis = 1)
