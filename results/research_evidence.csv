@@ -1,0 +1,6 @@
+Notebook,Key Finding,Impact on Feature Selection
+04 RMS Analysis,RMS overlaps heavily between normal and subtle anomalies.,Do not rely on RMS as the primary descriptor.
+05 Spectrogram Analysis,Subtle anomalies exhibit persistent tonal components while obvious anomalies contain broadband transients.,Need spectral features capable of capturing tonal changes.
+06 Spectral Centroid,Centroid variability (Std/IQR) is more discriminative than centroid mean.,Retain centroid variability measures.
+07 MFCC Analysis,"MFCC-1, MFCC-2 and their variability provide the strongest separation. Higher-order MFCCs contribute little.",Prioritize low-order MFCC statistics.
+08 Feature Space Analysis,PCA variance differs from anomaly discrimination; normal behaviour is multimodal.,Use supervised feature selection rather than PCA alone.
