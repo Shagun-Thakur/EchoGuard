@@ -8,8 +8,6 @@ data/
 __pycache__/
 *.pyc
 
-# Models
-models/
 
 # VS Code
 .vscode/

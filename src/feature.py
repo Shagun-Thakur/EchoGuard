@@ -1,5 +1,7 @@
 import librosa
 import numpy as np
+from src.io import *
+import sys
 
 # 1. RMS
 def rms(signal):
@@ -72,3 +74,43 @@ def mfcc_statistics(signal, sr, n_mfcc = 20):
         features[f"mfcc_{i+1}_mean"] = np.mean(mfcc[i])
         features[f"mfcc_{i+1}_std"] = np.std(mfcc[i])
     return features
+
+# Compute Log-Mel Spectrogram
+def compute_log_mel(signal):
+    """ 
+    Compute log-Mel spectrogram.
+    """
+    mel = librosa.feature.melspectrogram(
+        y = signal,
+        sr = 16000,
+        n_fft = 1024,
+        hop_length = 512,
+        n_mels = 64,
+        power = 2.0
+    )
+    log_mel = 20.0 / 2.0 * np.log10(mel + sys.float_info.epsilon)
+    return log_mel
+
+# Create 320-Dimensional Feature Vectors
+def create_feature_vectors(log_mel):
+    """
+    Convert a log-Mel spectrogram into
+    320-dimensional feature vectors by concatenating
+    five consecutive frames.
+    """
+    frames = log_mel.T
+    context = 5
+    feature_vectors = []
+    for i in range(len(frames) - context + 1):
+        window = frames[i:i + context]
+        feature_vectors.append(window.flatten())
+    feature_vectors = np.asarray(feature_vectors)
+    return feature_vectors
+
+# Complete feature extraction pipeline
+def extract_feature(filepath):
+    signal, x = load_audio(filepath, sr = 16000, mono = True)   # x = sample rate
+    log_mel = compute_log_mel(signal)
+    vectors = create_feature_vectors(log_mel)
+    return signal, log_mel, vectors
+    

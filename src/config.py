@@ -2,7 +2,6 @@ from pathlib import Path
 
 # Project
 project_root = Path(__file__).resolve().parent.parent
-figures_path = project_root/"figures"
 results_path = project_root/"results"
 
 # Dataset
