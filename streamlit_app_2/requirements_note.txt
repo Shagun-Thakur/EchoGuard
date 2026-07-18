@@ -1,0 +1,11 @@
+This dashboard now uses Plotly for interactive charts (zoom, hover tooltips)
+instead of static Matplotlib images. Make sure it's installed alongside your
+existing dependencies:
+
+    pip install plotly
+
+Everything else (streamlit, pandas, numpy, torch, joblib, matplotlib*) is
+unchanged from before.
+
+* matplotlib is no longer used by the dashboard itself, but keep it if your
+  src/ modules depend on it elsewhere.

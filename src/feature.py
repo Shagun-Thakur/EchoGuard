@@ -114,3 +114,53 @@ def extract_feature(filepath):
     vectors = create_feature_vectors(log_mel)
     return signal, log_mel, vectors
     
+
+# Handcrafted Features Used in Notebook 11 & 12
+
+def extract_handcrafted_features(filepath):
+    """
+    Extract the 9 handcrafted features used for the
+    Handcrafted Autoencoder and Normalizing Flow models.
+
+    Returns
+    -------
+    np.ndarray
+        Shape = (9,)
+    """
+    signal, sr = load_audio(
+        filepath,
+        sr=16000,
+        mono=True
+    )
+
+    # RMS
+    rms_feature = mean_rms(signal)
+
+    # MFCC statistics
+    mfcc_features = mfcc_statistics(
+        signal,
+        sr,
+        n_mfcc=20
+    )
+
+    # Spectral Centroid statistics
+    centroid_features = spectral_centroid_statistics(
+        signal,
+        sr
+    )
+
+    feature_vector = np.array([
+
+        rms_feature,
+        mfcc_features["mfcc_1_mean"],
+        mfcc_features["mfcc_1_std"],
+        mfcc_features["mfcc_2_mean"],
+        mfcc_features["mfcc_2_std"],
+        mfcc_features["mfcc_5_std"],
+        mfcc_features["mfcc_8_mean"],
+        centroid_features["centroid_std"],
+        centroid_features["centroid_iqr"]
+
+    ], dtype=np.float32)
+
+    return feature_vector
