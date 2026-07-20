@@ -20,3 +20,6 @@ dist/
 # Environment
 .venv/
 env/
+
+# local config
+src/local_config.py
