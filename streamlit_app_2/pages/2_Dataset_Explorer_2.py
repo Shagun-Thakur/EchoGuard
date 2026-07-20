@@ -17,7 +17,7 @@ from constants import ACCENT, PLOTLY_TEMPLATE  # noqa: E402
 
 # Project modules (only imported once the paths above are set)
 try:
-    from src.config import normal_path, abnormal_path
+    from src.config import get_app_dataset_paths
     from src.dataset import get_audio_files
     from src.io import load_audio
     from src.feature import compute_log_mel, rms, spectral_centroid, mfcc
@@ -29,6 +29,9 @@ except Exception as e:  # pragma: no cover - defensive import guard
     )
     st.stop()
 
+paths = get_app_dataset_paths()
+normal_path = paths["normal"]
+abnormal_path = paths["abnormal"]
 # -------------------------------------------------------------------------
 # Page header
 # -------------------------------------------------------------------------

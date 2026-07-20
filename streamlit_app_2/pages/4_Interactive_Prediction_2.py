@@ -154,8 +154,8 @@ try:
         tmp.write(uploaded_file.read())
         temp_audio_path = tmp.name
 
-    st.audio(temp_audio_path)
-
+    with open(temp_audio_path, "rb") as f:
+        st.audio(f.read(), format = "audio/wav")
     # ---------------------------------------------------------------
     # Load audio
     # ---------------------------------------------------------------
