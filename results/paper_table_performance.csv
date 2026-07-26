@@ -1,0 +1,4 @@
+Model,ROC-AUC,pAUC
+Baseline AE,0.7223 ± 0.0205,0.7927 ± 0.0307
+Handcrafted AE,0.9693 ± 0.0074,0.8992 ± 0.0103
+Normalizing Flow,0.9834 ± 0.0076,0.9464 ± 0.0145
