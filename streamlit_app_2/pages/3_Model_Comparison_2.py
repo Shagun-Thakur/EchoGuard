@@ -18,8 +18,8 @@ st.write(
 )
 st.markdown("---")
 
-tab_table, tab_chart, tab_figures, tab_findings = st.tabs(
-    ["📊 Table", "📈 Chart", "🖼️ Figures", "🔍 Key Findings"]
+tab_table, tab_figures, tab_findings = st.tabs(
+    ["📊 Table", "🖼️ Figures", "🔍 Key Findings"]
 )
 
 # -------------------------------------------------------------------------
@@ -32,47 +32,47 @@ with tab_table:
 
     st.markdown("#### Best Results")
     col1, col2, col3 = st.columns(3)
-    col1.metric("Baseline AE", f"{METRICS['Baseline Autoencoder']:.3f}")
+    col1.metric("Baseline AE", f"{METRICS['Baseline Autoencoder']}")
     col2.metric(
         "Handcrafted AE",
-        f"{METRICS['Handcrafted Autoencoder']:.3f}",
-        delta=f"+{METRICS['Handcrafted Autoencoder'] - METRICS['Baseline Autoencoder']:.3f}",
+        f"{METRICS['Handcrafted Autoencoder']}",
+        #delta=f"+{METRICS['Handcrafted Autoencoder'] - METRICS['Baseline Autoencoder']}",
     )
     col3.metric(
         "Normalizing Flow",
-        f"{METRICS['Normalizing Flow']:.4f}",
-        delta=f"+{METRICS['Normalizing Flow'] - METRICS['Baseline Autoencoder']:.3f}",
+        f"{METRICS['Normalizing Flow']}",
+        #delta=f"+{METRICS['Normalizing Flow'] - METRICS['Baseline Autoencoder']}",
     )
 
 # -------------------------------------------------------------------------
 # Interactive chart
 # -------------------------------------------------------------------------
-with tab_chart:
-    st.header("ROC-AUC by Model")
-    models = list(METRICS.keys())
-    values = list(METRICS.values())
-    colors = [ACCENT_SOFT, ACCENT_SOFT, ACCENT]
+# with tab_chart:
+#     st.header("ROC-AUC by Model")
+#     models = list(METRICS.keys())
+#     values = list(METRICS.values())
+#     colors = [ACCENT_SOFT, ACCENT_SOFT, ACCENT]
 
-    fig = go.Figure(
-        data=[
-            go.Bar(
-                x=models,
-                y=values,
-                text=[f"{v:.4f}" for v in values],
-                textposition="outside",
-                marker_color=colors,
-            )
-        ]
-    )
-    fig.update_layout(
-        template=PLOTLY_TEMPLATE,
-        yaxis_title="ROC-AUC",
-        yaxis_range=[0, 1.08],
-        height=420,
-        margin=dict(l=10, r=10, t=30, b=10),
-    )
-    st.plotly_chart(fig, use_container_width=True)
-    st.caption("Hover over a bar to see its exact ROC-AUC value.")
+#     fig = go.Figure(
+#         data=[
+#             go.Bar(
+#                 x=models,
+#                 y=values,
+#                 text=[f"{v}" for v in values],
+#                 textposition="outside",
+#                 marker_color=colors,
+#             )
+#         ]
+#     )
+#     fig.update_layout(
+#         template=PLOTLY_TEMPLATE,
+#         yaxis_title="ROC-AUC",
+#         yaxis_range=[0, 1.08],
+#         height=420,
+#         margin=dict(l=10, r=10, t=30, b=10),
+#     )
+#     st.plotly_chart(fig, use_container_width=True)
+#     st.caption("Hover over a bar to see its exact ROC-AUC value.")
 
 # -------------------------------------------------------------------------
 # Figures (guarded — the original file referenced images that may not exist)
@@ -102,12 +102,19 @@ with tab_figures:
             else:
                 st.info(f"`{filename}` not found yet.")
 
-    # st.subheader("ROC Curve")
-    # roc_path = PROJECT_ROOT / "figures" / "roc_comparison.png"
-    # if roc_path.is_file():
-    #     st.image(str(roc_path), use_container_width=True)
-    # else:
-    #     st.info("`figures/roc_comparison.png` not found yet.")
+    st.subheader("ROC-AUC Boxplot Comparison")
+    roc_path = PROJECT_ROOT/"results"/"figures"/"streamlit_images"/"auc_boxplot.png"
+    if roc_path.is_file():
+        st.image(str(roc_path))
+    else:
+        st.info("`figures/streamlit_images/auc_boxplot.png` not found yet.")
+
+    st.subheader("pAUC Boxplot Comparison")
+    pauc_path = PROJECT_ROOT/"results"/"figures"/"streamlit_images"/"pauc_boxplot.png"
+    if pauc_path.is_file():
+        st.image(str(pauc_path))
+    else:
+        st.info("`figures/streamlit_images/auc_boxplot.png` not found yet.")
 
 # -------------------------------------------------------------------------
 # Key findings
@@ -118,16 +125,15 @@ with tab_findings:
         f"""
         Feature engineering dramatically improved anomaly detection
         performance. Using only **9 handcrafted features**, the
-        Autoencoder improved from **{METRICS['Baseline Autoencoder']:.3f}**
-        to **{METRICS['Handcrafted Autoencoder']:.3f} ROC-AUC** while
-        reducing training time from roughly **10–15 minutes** to **1–2
-        minutes**.
+        Autoencoder improved from **{METRICS['Baseline Autoencoder']}**
+        to **{METRICS['Handcrafted Autoencoder']} ROC-AUC and pAUC** while
+        reducing training time from roughly **~25 minutes** to **~1 minute**.
         """
     )
     st.info(
         f"""
-        Normalizing Flow achieved the highest ROC-AUC
-        (**{METRICS['Normalizing Flow']:.4f}**) while maintaining similar
+        Normalizing Flow achieved the highest ROC-AUC and pAUC
+        (**{METRICS['Normalizing Flow']}**) while maintaining similar
         computational efficiency.
 
         For the evaluated **MIMII Pump id_00 (Channel 0)** dataset,

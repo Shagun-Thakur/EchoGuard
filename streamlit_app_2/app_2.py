@@ -37,12 +37,7 @@ st.markdown(
 # -------------------------------------------------------------------------
 # Sidebar branding
 # -------------------------------------------------------------------------
-# NOTE (structural fix): the previous version defined the Home page in TWO
-# places — inline in this file AND in pages/1_Home.py — which made Streamlit
-# show two different "home" entries in the sidebar and made the two copies
-# drift out of sync (different ROC-AUC numbers, different wording). Using
-# st.navigation() below gives this app a single, explicit list of pages, and
-# all shared numbers now live in constants.py instead of being duplicated.
+
 with st.sidebar:
     st.markdown("## 🎧 EchoGuard")
     st.caption("Unsupervised Machine Audio Anomaly Detection")

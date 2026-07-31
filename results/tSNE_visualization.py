@@ -21,7 +21,7 @@ RANDOM_SEED = 42
 print("Loading data...")
 
 df_9   = pd.read_csv(results_path/"selected_features.csv")   # 9 features + label
-df_all = pd.read_csv(results_path/"features.csv")             # all features + label
+df_all = pd.read_csv(results_path/"mfcc_summary.csv")             # all features + label
 
 #Separate features and labels 
 
@@ -31,7 +31,7 @@ X9     = df_9.drop(columns= ["file_name", "Research_Group", "label"]).values
 y9     = df_9["label"].values
 
 # -- Full feature set
-X_all  = df_all.drop(columns= ["file_name", "Research_Group", "label", "Group", "recording_id"]).values
+X_all  = df_all.drop(columns= ["file_name", "label"]).values
 y_all  = df_all["label"].values
 
 #Standardise 

@@ -2,50 +2,44 @@
 Central place for numbers, labels, and copy that are reused across
 multiple pages of the EchoGuard dashboard.
 
-NOTE: The original app had different ROC-AUC values for the same model
-on different pages (e.g. Handcrafted Autoencoder was reported as 0.980,
-0.984 AND 0.968 in three different spots; Normalizing Flow was reported
-as 0.9871 AND 0.9895). Whoever maintains this project should replace the
-placeholders below with the exact values from the final notebook run --
-right now they default to the value that appeared most often.
 """
 
 # ---------------------------------------------------------------------------
 # Headline metrics (ROC-AUC) — single source of truth
 # ---------------------------------------------------------------------------
 METRICS = {
-    "Baseline Autoencoder": 0.6830,
-    "Handcrafted Autoencoder": 0.9840,
-    "Normalizing Flow": 0.9871,
+    "Baseline Autoencoder": "72.23 ± 2.05, 79.27 ± 3.07",
+    "Handcrafted Autoencoder": "96.93 ± 0.74, 89.92 ± 1.03",
+    "Normalizing Flow": "98.34 ± 0.76, 94.64 ± 1.45",
 }
 
 # Extra columns for the detailed comparison table on the Model Comparison page
 COMPARISON_TABLE = {
     "Metric": [
-        "ROC-AUC",
+        "ROC-AUC and pAUC",
         "Input Features",
         "Training Time",
         "Anomaly Score",
         "Training Data",
     ],
     "Baseline Autoencoder": [
-        f"{METRICS['Baseline Autoencoder']:.3f}",
+        METRICS["Baseline Autoencoder"],
         "320 Log-Mel",
-        "10-15 min",
+        "~25 min",
         "Reconstruction Error",
         "Normal recordings",
     ],
     "Handcrafted Autoencoder": [
-        f"{METRICS['Handcrafted Autoencoder']:.3f}",
+        METRICS["Handcrafted Autoencoder"],
         "9 Selected Features",
-        "1-2 min",
+        "~1 min",
         "Reconstruction Error",
         "Normal recordings",
     ],
     "Normalizing Flow": [
-        f"{METRICS['Normalizing Flow']:.4f}",
+        METRICS["Normalizing Flow"],
         "9 Selected Features",
-        "1-2 min",
+        "~1 min",
         "Negative Log-Likelihood",
         "Normal recordings",
     ],

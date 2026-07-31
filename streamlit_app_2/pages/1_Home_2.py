@@ -30,16 +30,16 @@ comparative evaluation.
 )
 
 metric_cols = st.columns(3)
-metric_cols[0].metric("Baseline Autoencoder ROC-AUC", f"{METRICS['Baseline Autoencoder']:.3f}")
+metric_cols[0].metric("Baseline Autoencoder ROC-AUC and pAUC (%)", f"{METRICS['Baseline Autoencoder']}")
 metric_cols[1].metric(
-    "Handcrafted Autoencoder ROC-AUC",
-    f"{METRICS['Handcrafted Autoencoder']:.3f}",
-    delta=f"+{METRICS['Handcrafted Autoencoder'] - METRICS['Baseline Autoencoder']:.3f} vs baseline",
+    "Handcrafted Autoencoder ROC-AUC and pAUC (%)",
+    f"{METRICS['Handcrafted Autoencoder']}",
+    #delta=f"+{METRICS['Handcrafted Autoencoder'] - METRICS['Baseline Autoencoder']} vs baseline",
 )
 metric_cols[2].metric(
-    "Normalizing Flow ROC-AUC",
-    f"{METRICS['Normalizing Flow']:.4f}",
-    delta=f"+{METRICS['Normalizing Flow'] - METRICS['Baseline Autoencoder']:.3f} vs baseline",
+    "Normalizing Flow ROC-AUC and pAUC (%)",
+    f"{METRICS['Normalizing Flow']}",
+    #delta=f"+{METRICS['Normalizing Flow'] - METRICS['Baseline Autoencoder']} vs baseline",
 )
 
 st.markdown("---")
@@ -137,9 +137,9 @@ with tab_pipeline:
                 )
 
 with tab_findings:
-    st.success(f"**Baseline Autoencoder (Log-Mel):** ROC-AUC = **{METRICS['Baseline Autoencoder']:.3f}**")
-    st.success(f"**Handcrafted Feature Autoencoder:** ROC-AUC = **{METRICS['Handcrafted Autoencoder']:.3f}**")
-    st.success(f"**Normalizing Flow:** ROC-AUC = **{METRICS['Normalizing Flow']:.4f}**")
+    st.success(f"**Baseline Autoencoder (Log-Mel):** ROC-AUC and pAUC = **{METRICS['Baseline Autoencoder']}**")
+    st.success(f"**Handcrafted Feature Autoencoder:** ROC-AUC and pAUC= **{METRICS['Handcrafted Autoencoder']}**")
+    st.success(f"**Normalizing Flow:** ROC-AUC and pAUC = **{METRICS['Normalizing Flow']}**")
     st.info(
         """
         The experiments indicate that **feature representation had a much

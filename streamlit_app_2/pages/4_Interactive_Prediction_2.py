@@ -46,8 +46,8 @@ AE_MODEL_PATH = PROJECT_ROOT / "results/models/handcrafted_autoencoder_full.pth"
 NF_MODEL_PATH = PROJECT_ROOT / "results/models/normalizing_flow_full.pth"
 SCALER_PATH = PROJECT_ROOT / "results/models/feature_scaler.pkl"
 
-AE_THRESHOLD = 30.971419
-NF_THRESHOLD = 1000.11544
+AE_THRESHOLD = 40
+NF_THRESHOLD = 1500
 
 FEATURE_NAMES = [
     "RMS",
