@@ -34,18 +34,18 @@ def metric_card(label, value):
 # -------------------------------------------------------------------------
 st.title("🎧 EchoGuard")
 st.subheader(
-    "Exploring Unsupervised Machine Audio Anomaly Detection — "
-    "From Signal Analysis to Normalizing Flow"
+    "Evidence-Based Feature Engineering for Unsupervised Machine Audio Anomaly Detection"
 )
 
 st.markdown(
     """
-Welcome to **EchoGuard**, an interactive research dashboard built for an
+Welcome to **EchoGuard**, an interactive research dashboard for an
 undergraduate research project on **unsupervised machine audio anomaly
-detection**. Rather than only exposing a prediction tool, this dashboard
-walks through the full research workflow — signal analysis, feature
-engineering, baseline reproduction, Normalizing Flow modeling, and
-comparative evaluation.
+detection**. The core contribution of this project is an
+**Evidence-Based Multi-Method Feature Selection Pipeline** that reduces
+50 handcrafted acoustic descriptors to 9 highly discriminative features —
+achieving a dramatic improvement in detection performance while remaining
+physically interpretable.
 """
 )
 
@@ -86,9 +86,11 @@ with tab_overview:
         st.markdown("#### Objective")
         st.write(
             """
-            Investigate whether **Normalizing Flows** can improve
-            unsupervised machine audio anomaly detection compared to the
-            original Autoencoder baseline proposed for the MIMII dataset.
+                Develop an **Evidence-Based Multi-Method Feature Selection Pipeline**
+                that constructs a compact, interpretable, and discriminative handcrafted
+                feature representation for unsupervised machine audio anomaly detection —
+                and evaluate whether this representation improves upon the original
+                Log-Mel Spectrogram baseline.
             """
         )
 
@@ -98,18 +100,18 @@ with tab_overview:
         st.markdown(
             """
             - ✔ Reproduce the original MIMII Autoencoder baseline
-            - ✔ Understand machine audio through signal analysis
-            - ✔ Identify informative acoustic features
-            - ✔ Build a handcrafted-feature Autoencoder
+            - ✔ Understand machine audio through signal processing
+            - ✔ Extract 50 handcrafted acoustic descriptors
+            - ✔ Develop an evidence-based feature selection pipeline
             """
         )
     with goal_col2:
         st.markdown(
             """
-            - ✔ Implement a Normalizing Flow model
-            - ✔ Compare reconstruction vs. density estimation
-            - ✔ Develop an interactive Streamlit dashboard
-            - ✔ Improve interpretability of anomaly detection
+            - ✔ Reduce 50 features to 9 through multi-method voting
+            - ✔ Validate the pipeline through experimental comparison
+            - ✔ Implement a Normalizing Flow as a secondary contribution
+            - ✔ Build an interpretable, deployable research dashboard
             """
         )
 
@@ -163,10 +165,11 @@ with tab_findings:
     st.success(f"**Normalizing Flow:** ROC-AUC and pAUC = **{METRICS['Normalizing Flow']}**")
     st.info(
         """
-        The experiments indicate that **feature representation had a much
-        larger impact on anomaly detection performance than changing the
-        model architecture** for the evaluated MIMII Pump id_00, Channel 0
-        dataset.
+            The experiments confirm that **the Evidence-Based Feature Selection
+            Pipeline is the primary driver of performance improvement**. Reducing
+            50 features to 9 through multi-method voting improved ROC-AUC from
+            the baseline while cutting training time by ~96%. The Normalizing
+            Flow provides a further incremental gain on top of this foundation.
         """
     )
 
