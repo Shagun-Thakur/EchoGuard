@@ -43,19 +43,22 @@ with st.sidebar:
     st.caption("Unsupervised Machine Audio Anomaly Detection")
     st.markdown("---")
 
-home = st.Page("pages/1_Home_2.py", title="Home", icon="🏠", default=True)
+home = st.Page("pages/1_Home.py", title="Home", icon="🏠", default=True)
+feature_selection_pipeline = st.Page(
+    "pages/2_FeatureSelection_Pipeline.py", title="Feature Selection Pipeline", icon="🔬"
+)
 dataset_explorer = st.Page(
-    "pages/2_Dataset_Explorer_2.py", title="Dataset Explorer", icon="📂"
+    "pages/3_Dataset_Explorer.py", title="Dataset Explorer", icon="📂"
 )
 model_comparison = st.Page(
-    "pages/3_Model_Comparison_2.py", title="Model Comparison", icon="📊"
+    "pages/4_Model_Comparison.py", title="Model Comparison", icon="📊"
 )
 interactive_prediction = st.Page(
-    "pages/4_Interactive_Prediction_2.py", title="Interactive Prediction", icon="🎯"
+    "pages/5_Interactive_Prediction.py", title="Interactive Prediction", icon="🎯"
 )
 
 pg = st.navigation(
-    [home, dataset_explorer, model_comparison, interactive_prediction]
+    [home, feature_selection_pipeline, dataset_explorer, model_comparison, interactive_prediction]
 )
 
 with st.sidebar:

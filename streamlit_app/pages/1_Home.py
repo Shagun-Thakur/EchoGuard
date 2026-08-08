@@ -151,16 +151,14 @@ with tab_findings:
 
 st.markdown("---")
 
-# -------------------------------------------------------------------------
-# Quick navigation — uses st.page_link (works with st.navigation) instead of
-# the previous st.switch_page buttons, so pages can also be Ctrl/Cmd-clicked
-# to open in a new tab.
-# -------------------------------------------------------------------------
+# Quick navigation 
 st.markdown("### 🚀 Explore the Dashboard")
-nav_col1, nav_col2, nav_col3 = st.columns(3)
+nav_col1, nav_col2, nav_col3, nav_col4 = st.columns(4)
 with nav_col1:
-    st.page_link("pages/2_Dataset_Explorer_2.py", label="Dataset Explorer", icon="📂")
+    st.page_link("pages/2_FeatureSelection_Pipeline.py", label="Feature Selection Pipeline", icon="🔬")
+with nav_col1:
+    st.page_link("pages/3_Dataset_Explorer.py", label="Dataset Explorer", icon="📂")
 with nav_col2:
-    st.page_link("pages/3_Model_Comparison_2.py", label="Model Comparison", icon="📊")
+    st.page_link("pages/4_Model_Comparison.py", label="Model Comparison", icon="📊")
 with nav_col3:
-    st.page_link("pages/4_Interactive_Prediction_2.py", label="Interactive Prediction", icon="🎯")
+    st.page_link("pages/5_Interactive_Prediction.py", label="Interactive Prediction", icon="🎯")
