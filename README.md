@@ -168,9 +168,6 @@ EchoGuard/
 │   requirements.txt
 │   setup.py
 │
-├───.vscode
-│       settings.json
-│
 ├───data
 │   │   .gitkeep
 │   │   README.md
@@ -194,7 +191,7 @@ EchoGuard/
 │   │   09_feature_selection.ipynb
 │   │   10_baseline_reproduction.ipynb
 │   │   11_handcrafted_features_Autoencoder.ipynb
-│   │   12_normalizing_flow_handcrafted_features.ipynb.ipynb
+│   │   12_normalizing_flow_handcrafted_features.ipynb
 │   └───13_statistical_evaluation.ipynb
 │   
 ├───results
@@ -321,7 +318,6 @@ EchoGuard/
 └───streamlit_app
     │   app.py
     │   constants.py
-    │   requirements_note.txt
     │
     └───pages
         │   1_Home.py
