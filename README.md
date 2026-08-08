@@ -168,10 +168,6 @@ EchoGuard/
 │   requirements.txt
 │   setup.py
 │
-├───.ipynb_checkpoints
-│       pyproject-checkpoint.toml
-│       setup-checkpoint.py
-│
 ├───.vscode
 │       settings.json
 │
@@ -185,12 +181,6 @@ EchoGuard/
 │           eval_labels.npy
 │           train_data.npy
 │           train_files.npy
-│
-├───echoguard.egg-info
-│       dependency_links.txt
-│       PKG-INFO
-│       SOURCES.txt
-│       top_level.txt
 │
 ├───notebooks
 │   │   01_dataset_exploration.ipynb
@@ -322,37 +312,24 @@ EchoGuard/
 │   │   dataset.py
 │   │   feature.py
 │   │   io.py
-│   │   local_config.py
+│   │   local_config.example.py
 │   │   models.py
 │   │   utils.py
 │   │   visualization.py
-│   │   __init__.py
-│   │
-│   └───__pycache__
-│           config.cpython-311.pyc
-│           dataset.cpython-311.pyc
-│           feature.cpython-311.pyc
-│           io.cpython-311.pyc
-│           local_config.cpython-311.pyc
-│           models.cpython-311.pyc
-│           utils.cpython-311.pyc
-│           visualization.cpython-311.pyc
-│           __init__.cpython-311.pyc
+│   └─── __init__.py
 │
 └───streamlit_app
     │   app.py
     │   constants.py
     │   requirements_note.txt
     │
-    ├───pages
-    │   │   1_Home.py
-    │   │   2_FeatureSelection_Pipeline.py
-    │   │   3_Dataset_Explorer.py
-    │   │   4_Model_Comparison.py
-    │   │   5_Interactive_Prediction.py
-    │
-    └───__pycache__
-            constants.cpython-311.pyc
+    └───pages
+        │   1_Home.py
+        │   2_FeatureSelection_Pipeline.py
+        │   3_Dataset_Explorer.py
+        │   4_Model_Comparison.py
+        └─── 5_Interactive_Prediction.py
+   
 
 ```
 ---
