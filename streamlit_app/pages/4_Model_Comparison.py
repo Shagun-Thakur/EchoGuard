@@ -30,50 +30,34 @@ with tab_table:
     comparison = pd.DataFrame(COMPARISON_TABLE)
     st.dataframe(comparison, use_container_width=True, hide_index=True)
 
-    st.markdown("#### Best Results")
-    col1, col2, col3 = st.columns(3)
-    col1.metric("Baseline AE", f"{METRICS['Baseline Autoencoder']}")
-    col2.metric(
-        "Handcrafted AE",
-        f"{METRICS['Handcrafted Autoencoder']}",
-        #delta=f"+{METRICS['Handcrafted Autoencoder'] - METRICS['Baseline Autoencoder']}",
-    )
-    col3.metric(
-        "Normalizing Flow",
-        f"{METRICS['Normalizing Flow']}",
-        #delta=f"+{METRICS['Normalizing Flow'] - METRICS['Baseline Autoencoder']}",
-    )
+    def metric_card(label, value):
+        st.markdown(
+            f"""
+            <div style="
+                background-color: rgba(124, 58, 237, 0.06);
+                border: 1px solid rgba(124, 58, 237, 0.15);
+                border-radius: 12px;
+                padding: 0.9rem 1rem;
+            ">
+                <div style="font-size: 0.75rem; font-weight: 600; color: #7C3AED;">
+                    {label}
+                </div>
+                <div style="font-size: 0.95rem; font-weight: 700; margin-top: 0.3rem; line-height: 1.5;">
+                    {value}
+                </div>
+            </div>
+            """,
+            unsafe_allow_html=True,
+        )
 
-# -------------------------------------------------------------------------
-# Interactive chart
-# -------------------------------------------------------------------------
-# with tab_chart:
-#     st.header("ROC-AUC by Model")
-#     models = list(METRICS.keys())
-#     values = list(METRICS.values())
-#     colors = [ACCENT_SOFT, ACCENT_SOFT, ACCENT]
-
-#     fig = go.Figure(
-#         data=[
-#             go.Bar(
-#                 x=models,
-#                 y=values,
-#                 text=[f"{v}" for v in values],
-#                 textposition="outside",
-#                 marker_color=colors,
-#             )
-#         ]
-#     )
-#     fig.update_layout(
-#         template=PLOTLY_TEMPLATE,
-#         yaxis_title="ROC-AUC",
-#         yaxis_range=[0, 1.08],
-#         height=420,
-#         margin=dict(l=10, r=10, t=30, b=10),
-#     )
-#     st.plotly_chart(fig, use_container_width=True)
-#     st.caption("Hover over a bar to see its exact ROC-AUC value.")
-
+st.markdown("#### Best Results")
+col1, col2, col3 = st.columns(3)
+with col1:
+    metric_card("Baseline AE", METRICS['Baseline Autoencoder'])
+with col2:
+    metric_card("Handcrafted AE", METRICS['Handcrafted Autoencoder'])
+with col3:
+    metric_card("Normalizing Flow", METRICS['Normalizing Flow'])
 # -------------------------------------------------------------------------
 # Figures (guarded — the original file referenced images that may not exist)
 # -------------------------------------------------------------------------

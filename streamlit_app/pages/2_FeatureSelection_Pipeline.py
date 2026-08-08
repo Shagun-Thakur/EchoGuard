@@ -13,6 +13,26 @@ sys.path.append(str(APP_ROOT))
 
 from constants import ACCENT, ACCENT_SOFT, PLOTLY_TEMPLATE # noqa: E402
 
+def metric_card(label, value):
+    st.markdown(
+        f"""
+        <div style="
+            background-color: rgba(124, 58, 237, 0.06);
+            border: 1px solid rgba(124, 58, 237, 0.15);
+            border-radius: 12px;
+            padding: 0.9rem 1rem;
+        ">
+            <div style="font-size: 0.72rem; font-weight: 600; color: #7C3AED; line-height:1.4;">
+                {label}
+            </div>
+            <div style="font-size: 0.95rem; font-weight: 700; margin-top: 0.3rem; line-height: 1.5;">
+                {value}
+            </div>
+        </div>
+        """,
+        unsafe_allow_html=True,
+    )
+
 FIGURES_DIR =PROJECT_ROOT/"results"/"figures"/"streamlit_images"
 
 st.markdown(
@@ -159,10 +179,14 @@ st.markdown(
 
 # Headline metrics
 m1, m2, m3, m4 = st.columns(4)
-m1.metric("Initial Features", "50")
-m2.metric("Final Features", "9")
-m3.metric("Dimensionality Reduction", "82%")
-m4.metric("Selection Strategy", "Multi-Method Voting")
+with m1:
+    metric_card("Initial Features", "50")
+with m2:
+    metric_card("Final Features", "9")
+with m3:
+    metric_card("Dimensionality Reduction", "82%")
+with m4:
+    metric_card("Selection Strategy", "Multi-Method Voting")
 
 st.markdown('<hr class="section-rule">', unsafe_allow_html=True)
 

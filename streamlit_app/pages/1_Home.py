@@ -9,6 +9,26 @@ sys.path.append(str(APP_ROOT))
 
 from constants import METRICS, DATASET_INFO, PIPELINE_STEPS  # noqa: E402
 
+def metric_card(label, value):
+    st.markdown(
+        f"""
+        <div style="
+            background-color: rgba(124, 58, 237, 0.06);
+            border: 1px solid rgba(124, 58, 237, 0.15);
+            border-radius: 12px;
+            padding: 0.9rem 1rem;
+        ">
+            <div style="font-size: 0.72rem; font-weight: 600; color: #7C3AED; line-height:1.4;">
+                {label}
+            </div>
+            <div style="font-size: 0.95rem; font-weight: 700; margin-top: 0.3rem; line-height: 1.5;">
+                {value}
+            </div>
+        </div>
+        """,
+        unsafe_allow_html=True,
+    )
+
 # -------------------------------------------------------------------------
 # Hero section
 # -------------------------------------------------------------------------
@@ -30,17 +50,12 @@ comparative evaluation.
 )
 
 metric_cols = st.columns(3)
-metric_cols[0].metric("Baseline Autoencoder ROC-AUC and pAUC (%)", f"{METRICS['Baseline Autoencoder']}")
-metric_cols[1].metric(
-    "Handcrafted Autoencoder ROC-AUC and pAUC (%)",
-    f"{METRICS['Handcrafted Autoencoder']}",
-    #delta=f"+{METRICS['Handcrafted Autoencoder'] - METRICS['Baseline Autoencoder']} vs baseline",
-)
-metric_cols[2].metric(
-    "Normalizing Flow ROC-AUC and pAUC (%)",
-    f"{METRICS['Normalizing Flow']}",
-    #delta=f"+{METRICS['Normalizing Flow'] - METRICS['Baseline Autoencoder']} vs baseline",
-)
+with metric_cols[0]:
+    metric_card("Baseline Autoencoder ROC-AUC and pAUC (%)", METRICS['Baseline Autoencoder'])
+with metric_cols[1]:
+    metric_card("Handcrafted Autoencoder ROC-AUC and pAUC (%)", METRICS['Handcrafted Autoencoder'])
+with metric_cols[2]:
+    metric_card("Normalizing Flow ROC-AUC and pAUC (%)", METRICS['Normalizing Flow'])
 
 st.markdown("---")
 
@@ -101,12 +116,18 @@ with tab_overview:
 with tab_dataset:
     st.markdown("#### MIMII Pump Dataset")
     d1, d2, d3 = st.columns(3)
-    d1.metric("Dataset", DATASET_INFO["Dataset"])
-    d1.metric("Machine Type", DATASET_INFO["Machine Type"])
-    d2.metric("Machine ID", DATASET_INFO["Machine ID"])
-    d2.metric("Channel", DATASET_INFO["Channel"])
-    d3.metric("Training Recordings", DATASET_INFO["Training Recordings"])
-    d3.metric("Evaluation Recordings", DATASET_INFO["Evaluation Recordings"])
+    with d1:
+        metric_card("Dataset", DATASET_INFO["Dataset"])
+        st.markdown("<div style='margin-top:0.5rem'></div>", unsafe_allow_html=True)
+        metric_card("Machine Type", DATASET_INFO["Machine Type"])
+    with d2:
+        metric_card("Machine ID", DATASET_INFO["Machine ID"])
+        st.markdown("<div style='margin-top:0.5rem'></div>", unsafe_allow_html=True)
+        metric_card("Channel", DATASET_INFO["Channel"])
+    with d3:
+        metric_card("Training Recordings", DATASET_INFO["Training Recordings"])
+        st.markdown("<div style='margin-top:0.5rem'></div>", unsafe_allow_html=True)
+        metric_card("Evaluation Recordings", DATASET_INFO["Evaluation Recordings"])
     st.caption(
         "Head to **Dataset Explorer** in the sidebar to listen to individual "
         "recordings and inspect their waveform, spectrogram, and acoustic features."
@@ -156,9 +177,9 @@ st.markdown("### 🚀 Explore the Dashboard")
 nav_col1, nav_col2, nav_col3, nav_col4 = st.columns(4)
 with nav_col1:
     st.page_link("pages/2_FeatureSelection_Pipeline.py", label="Feature Selection Pipeline", icon="🔬")
-with nav_col1:
-    st.page_link("pages/3_Dataset_Explorer.py", label="Dataset Explorer", icon="📂")
 with nav_col2:
-    st.page_link("pages/4_Model_Comparison.py", label="Model Comparison", icon="📊")
+    st.page_link("pages/3_Dataset_Explorer.py", label="Dataset Explorer", icon="📂")
 with nav_col3:
+    st.page_link("pages/4_Model_Comparison.py", label="Model Comparison", icon="📊")
+with nav_col4:
     st.page_link("pages/5_Interactive_Prediction.py", label="Interactive Prediction", icon="🎯")
