@@ -7,3 +7,4 @@ pydub
 scipy
 scikit-learn
 jupyter
+plotly
