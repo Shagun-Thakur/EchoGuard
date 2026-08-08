@@ -25,7 +25,7 @@ st.markdown(
         border-radius: 12px;
         padding: 0.9rem 1rem 0.6rem 1rem;
     }
-    [data-testid="stMetricLabel"] { font-weight: 600; }
+    [data-testid="stMetricLabel"] { font-weight: 600; font-size: 0.75 !important;}
     section[data-testid="stSidebar"] {
         border-right: 1px solid rgba(124, 58, 237, 0.15);
     }
